@@ -6,7 +6,7 @@ import com.example.demo.service.MarketService;
 public class MarketServiceImpl implements MarketService {
     @Override
     public Market getMarket() {
-        System.out.println(123);
+        System.out.println(12323);
         return null;
     }
 }
