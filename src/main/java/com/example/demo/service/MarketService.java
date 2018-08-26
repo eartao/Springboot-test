@@ -1,7 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.dao.Market;
+import com.example.demo.domain.Market;
+
+import java.util.List;
 
 public interface MarketService {
-    Market getMarket();
+    List<Market> getMarket();
 }

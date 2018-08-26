@@ -1,9 +1,14 @@
-package com.example.demo.dao;
+package com.example.demo.domain;
+
 public class Market {
     private Integer id;
+
     private String usd;
+
     private String market;
+
     private String description;
+
     private String description2;
 
     public Integer getId() {
@@ -19,7 +24,7 @@ public class Market {
     }
 
     public void setUsd(String usd) {
-        this.usd = usd;
+        this.usd = usd == null ? null : usd.trim();
     }
 
     public String getMarket() {
@@ -27,7 +32,7 @@ public class Market {
     }
 
     public void setMarket(String market) {
-        this.market = market;
+        this.market = market == null ? null : market.trim();
     }
 
     public String getDescription() {
@@ -35,7 +40,7 @@ public class Market {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? null : description.trim();
     }
 
     public String getDescription2() {
@@ -43,18 +48,6 @@ public class Market {
     }
 
     public void setDescription2(String description2) {
-        this.description2 = description2;
+        this.description2 = description2 == null ? null : description2.trim();
     }
-
-    @Override
-    public String toString() {
-        return "Market{" +
-                "id=" + id +
-                ", usd='" + usd + '\'' +
-                ", market='" + market + '\'' +
-                ", description='" + description + '\'' +
-                ", description2='" + description2 + '\'' +
-                '}';
-    }
-
 }
