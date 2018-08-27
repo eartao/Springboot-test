@@ -1,6 +1,9 @@
 package com.example.demo.mapper;
 
 import com.example.demo.domain.Market;
+
+import java.util.List;
+
 public interface MarketMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +16,6 @@ public interface MarketMapper {
     int updateByPrimaryKeySelective(Market record);
 
     int updateByPrimaryKey(Market record);
+
+    List<Market>  selectTotal();
 }

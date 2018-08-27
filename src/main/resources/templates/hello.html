@@ -6,12 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>Price Check Tool</title>
+    <!--<script src="/webjars/jquery/3.1.1/jquery.min.js"></script>-->
+    <!--<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js"></script>-->
+    <!--<title>WebJars Demo</title>-->
+    <!--<link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" />-->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <!--<link href="https://cdn.bootcss.com/avalon.js/2.0s/avalon.js" rel="stylesheet">-->
+    <script src="https://cdn.bootcss.com/avalon.js/2.0s/avalon.js"></script>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+    <script>
+        // function clickme() {
+        //     $.ajax({
+        //         url:"/getMarket",
+        //         dataType:"json",
+        //         type:"get",
+        //         success:function (data) {
+        //             alert(data[0].usd+""+data[0].description+""+data[0].market);
+        //         }
+        //     });
+        // }
+        var viewmodel = avalon.define({
+            //id必须和页面上定义的ms-controller名字相同，否则无法控制页面
+            $id: "viewmodel",
+            datalist: {},
+            text: "请求数据",
+            request: function () {
+                $.ajax({
+                    type: "post",
+                    url: "/getMarket",    //向后端请求数据的url
+                    data: {},
+                    success: function (data) {
+                        //$('button').removeClass("btn-primary").addClass("btn-success").attr('disabled', true);
 
+                        viewmodel.datalist = data;
+
+                        viewmodel.text = "数据请求成功，已渲染";
+                    }
+                });
+            }
+        });
+
+    </script>
 </head>
-<body>
+
+<body ms-controller="viewmodel">
+<div class="container"><br/>
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        Hello, <strong>WebJars!</strong>
+    </div>
+</div>
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
@@ -49,6 +97,27 @@
                 <div class="progress-bar progress-success">
                 </div>
             </div>
+            <button type="button" class="btn btn-primary" style="margin: 10px;" ms-click="@request">{{@text}}</button>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <td class="active">id</td>
+                    <td class="success">usd</td>
+                    <td class="warning">market</td>
+                    <td class="danger">description</td>
+                    <td class="info">description2</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ms-for="el in @datalist">
+                    <td class="active">{{el.id}}</td>
+                    <td class="success">{{el.usd}}</td>
+                    <td class="warning">{{el.market}}</td>
+                    <td class="danger">{{el.description}}</td>
+                    <td class="info">{{el.description2}}</td>
+                </tr>
+                </tbody>
+            </table>
             <table class="table table-condensed">
                 <thead>
                 <tr>
@@ -179,6 +248,6 @@
         </div>
     </div>
 </div>
-
+<button onclick="clickme()">点我</button>
 </body>
 </html>

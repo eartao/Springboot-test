@@ -15,9 +15,7 @@ public class MarketServiceImpl implements MarketService {
     @Override
     public List<Market> getMarket() {
         System.out.println(12312+"+++++++++++==============");
-        Market market = marketMapper.selectByPrimaryKey(1);
-        List<Market> list = new ArrayList<>();
-        list.add(market);
+        List<Market> list = marketMapper.selectTotal();
         return list;
     }
 
