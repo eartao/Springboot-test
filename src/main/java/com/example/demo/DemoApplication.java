@@ -40,7 +40,7 @@ public class DemoApplication {
 
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 
-//        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("/com/example/demo/mapper/*.xml"));
+//        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("com/example/demo/mapper/*.xml"));
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("/mybatis/*.xml"));
 
         return sqlSessionFactoryBean.getObject();
