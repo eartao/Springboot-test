@@ -14,7 +14,6 @@ public class MarketServiceImpl implements MarketService {
     private MarketMapper marketMapper;
     @Override
     public List<Market> getMarket() {
-        System.out.println(12312+"+++++++++++==============");
         List<Market> list = marketMapper.selectTotal();
         return list;
     }
